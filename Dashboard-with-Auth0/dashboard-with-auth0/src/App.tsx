@@ -3,6 +3,7 @@ import "./index.css";
 import Home from './pages/Home'
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   
@@ -12,6 +13,7 @@ function App() {
       <Route path="/home" element={<Home/>}/>
       <Route path="*" element={<NotFound/>}/>
       <Route path="/login" element={<Login/>}/>
+      <Route path="/register" element={<Register/>}/>
     </Routes>
   );
 }
