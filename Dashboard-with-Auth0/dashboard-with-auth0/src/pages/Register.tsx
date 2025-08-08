@@ -11,7 +11,7 @@ export default function Register() {
           <div>
             <div className=" w-[75%] mt-10 h-[500px] justify-self-center text-left text-2xl flex-row">
               <form>
-              <span className="text-gray-900">Username </span>
+              <span className="text-gray-900">Login </span>
               <input className="text-base hover:text-black bg-gray-200 rounded-md p-1 flex w-full" type="text" placeholder="Type Your Login" />
               <span className="text-gray-900">Email </span>
               <input className="text-base hover:text-black bg-gray-200 rounded-md p-1 flex w-full" type="password" placeholder="Type Your Email" />
