@@ -2,6 +2,7 @@ import { useState } from "react";
 import Nav from "../components/Nav";
 import { Link } from "react-router-dom";
 
+
 export default function Login() {
   const [loginChoice,SetLoginChoice]=useState('Email')
   return (
