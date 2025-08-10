@@ -120,8 +120,9 @@ export default function Register() {
   return (
     <>
       <Nav loginstatus="Logout" />
-      <div className="h-full flex bg-gray-300 justify-center min-h-screen">
-        <div className="w-[45%] bg-white m-15 rounded-3xl text-center min-h-[500px]">
+      <div className="h-full flex bg-gray-300 justify-center min-h-screen ">
+        <div className="w-full md:w-[45%] bg-white m-4 rounded-3xl text-center
+                h-[75vh] md:h-auto overflow-y-auto md:overflow-y-visible">
           <p className="text-4xl mt-8 font-bold">Register</p>
           <div>
             <div className="w-[75%] mt-10 h-[500px] justify-self-center text-left text-2xl flex-row">
@@ -240,13 +241,14 @@ export default function Register() {
                   Sign with Google
                 </button>
 
-                
+                <p>
                 <Link
                   to={"/login"}
-                  className="mt-12 text-base text-blue-500 cursor-pointer hover:underline"
+                  className="mt-12 text-base text-blue-500 cursor-pointer hover:underline "
                 >
                   If you have an account Login instead
                 </Link>
+                </p>
               </form>
             </div>
           </div>
