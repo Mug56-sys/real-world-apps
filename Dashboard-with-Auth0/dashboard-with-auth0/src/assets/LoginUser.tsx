@@ -1,27 +1,39 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
-import {auth,db}from "../assets/Firebase"
-import {doc,getDoc} from "firebase/firestore"
+import { auth, db } from './Firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
 
-interface LoginParams{
-  loginChoice:"Email" | "UserName";
-  identifier:string;
-  password:string;
-}
+type LoginOptions = {
+  loginChoice: 'Email' | 'UserName';
+  identifier: string;
+  password: string;
+};
 
-export async function loginUser({loginChoice,identifier,password}:LoginParams){
-  let emailToUse=identifier;
-
-  if(loginChoice==="UserName"){
-    const userDoc=await getDoc(doc(db,'usernames',identifier.toLowerCase()));
-    if(!userDoc.exists()){
-      throw new Error("no username")
-    }
-    const uid=userDoc.data().uid;
-    const userInfo=await getDoc(doc(db,'users',uid));
-    if(!userInfo.exists()){
-      throw new Error('no data')
-    }
-    emailToUse=userInfo.data().email;
+export async function loginUser({ loginChoice, identifier, password }: LoginOptions) {
+  if (!identifier || !password) {
+    throw new Error('Missing login credentials');
   }
-  await signInWithEmailAndPassword(auth,emailToUse,password);
+
+  let emailToUse = identifier;
+
+  if (loginChoice === 'UserName') {
+    const usernameDoc = await getDoc(doc(db, 'usernames', identifier.toLowerCase()));
+    if (!usernameDoc.exists()) {
+      throw new Error('Username not found');
+    }
+
+    const { uid } = usernameDoc.data();
+    const userDoc = await getDoc(doc(db, 'users', uid));
+    if (!userDoc.exists()) {
+      throw new Error('User record not found');
+    }
+
+    const userData = userDoc.data();
+    if (!userData?.email) {
+      throw new Error('Email not found for this user');
+    }
+
+    emailToUse = userData.email;
+  }
+
+  await signInWithEmailAndPassword(auth, emailToUse, password);
 }
