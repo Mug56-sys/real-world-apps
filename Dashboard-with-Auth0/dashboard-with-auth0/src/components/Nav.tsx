@@ -36,7 +36,14 @@ export default function Nav() {
         </Link>
       </div>
 
-    
+    <div className="flex gap-6 ml-4">
+      {isLoggedIn &&(
+        <Link to={'/tasks'}
+        className="px-3 border rounded-md cursor-pointer bg-white text-gray-900 font-bold py-1 hover:bg-gray-300 text-center">
+          Tasks
+        </Link>
+      )}
+    </div>
       <div className="flex-grow"></div>
 
       

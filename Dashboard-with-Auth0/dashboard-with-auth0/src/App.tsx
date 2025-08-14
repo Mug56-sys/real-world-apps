@@ -11,7 +11,8 @@ import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import LoginModal from "./components/LoginModal";
-
+import Tasks from "./components/Tasks";
+import TaskDetails from "./components/TaskDetails";
 
 function App() {
   const location = useLocation();
@@ -29,6 +30,8 @@ function App() {
         <Route path="*" element={<NotFound />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/tasks" element={<Tasks />} />
+        <Route path="/tasks/:taskId" element={<TaskDetails />} />
       </Routes>
       {backgroundLocation && (
         <Routes>
